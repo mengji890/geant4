@@ -40,7 +40,7 @@ int main(int argc,char** argv)
   // Set mandatory initialization classes
   //
   // Detector construction
-  runManager->SetUserInitialization(new B1DetectorConstruction());
+  runManager->SetUserInitialization(new DetectorConstruction());
 
   // Physics list
   G4VModularPhysicsList* physicsList = new QGSP_BERT;
