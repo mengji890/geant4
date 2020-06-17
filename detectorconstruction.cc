@@ -120,9 +120,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 //     
 
 
-// Set Shape2 as scoring volume
+// Set Vessel as scoring volume
 //
-//    fScoringVolume = logicShape2;
+    fScoringVolume = logicVes;
 
     //
     //always return the physical World
