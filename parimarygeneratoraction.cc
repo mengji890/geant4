@@ -1,4 +1,4 @@
-#include "B1PrimaryGeneratorAction.hh"
+#include "PrimaryGeneratorAction.hh"
 
 #include "G4LogicalVolumeStore.hh"
 #include "G4LogicalVolume.hh"
@@ -12,10 +12,10 @@
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-B1PrimaryGeneratorAction::B1PrimaryGeneratorAction()
+PrimaryGeneratorAction::PrimaryGeneratorAction()
 : G4VUserPrimaryGeneratorAction(),
   fParticleGun(0), 
-  fEnvelopeBox(0)
+  fVesselBox(0)
 {
   G4int n_particle = 1;
   fParticleGun  = new G4ParticleGun(n_particle);
@@ -32,14 +32,14 @@ B1PrimaryGeneratorAction::B1PrimaryGeneratorAction()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-B1PrimaryGeneratorAction::~B1PrimaryGeneratorAction()
+PrimaryGeneratorAction::~PrimaryGeneratorAction()
 {
   delete fParticleGun;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void B1PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
+void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
   //this function is called at the begining of ecah event
   //
@@ -52,24 +52,24 @@ void B1PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double vesSizeY = 0;
   G4double vesSizeZ = 0;
 
-  if (!fEnvelopeBox)
+  if (!fVesselBox)
   {
     G4LogicalVolume* vesLV
       = G4LogicalVolumeStore::GetInstance()->GetVolume("Vessel");
-    if ( vesLV ) fEnvelopeBox = dynamic_cast<G4Box*>(vesLV->GetSolid());
+    if ( vesLV ) fVesselBox = dynamic_cast<G4Box*>(vesLV->GetSolid());
   }
 
-  if ( fEnvelopeBox ) {
-    vesSizeX = fEnvelopeBox->GetXHalfLength()*2.;
-    vesSizeY = fEnvelopeBox->GetXHalfLength()*2.;
-    vesSizeZ = fEnvelopeBox->GetZHalfLength()*2.;
+  if ( fVesselBox ) {
+    vesSizeX = fVesselBox->GetXHalfLength()*2.;
+    vesSizeY = fVesselBox->GetXHalfLength()*2.;
+    vesSizeZ = fVesselBox->GetZHalfLength()*2.;
   }  
   else  {
     G4ExceptionDescription msg;
     msg << "Vessel volume of box shape not found.\n"; 
     msg << "Perhaps you have changed geometry.\n";
     msg << "The gun will be place at the center.";
-    G4Exception("B1PrimaryGeneratorAction::GeneratePrimaries()",
+    G4Exception("PrimaryGeneratorAction::GeneratePrimaries()",
      "MyCode0002",JustWarning,msg);
   }
 
