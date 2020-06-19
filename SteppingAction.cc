@@ -40,7 +40,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   if (volume != fScoringVolume) return;
 
   // get the name of generated particle
-  G4String name = step->GetTrack()->GetDefinition()->GetParticleName();
+  G4String particlename = step->GetTrack()->GetDefinition()->GetParticleName();
   if (name == pion)
   G4double number = 1;
   fEventAction->AddEdep(number);  
