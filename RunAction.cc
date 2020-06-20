@@ -109,7 +109,7 @@ void RunAction::EndOfRunAction(const G4Run* run)
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void RunAction::AddEdep(G4double numb)
+void RunAction::AddNumb(G4double numb)
 {
   fNumber  += numb;
   
