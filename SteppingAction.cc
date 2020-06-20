@@ -41,7 +41,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 
   // get the name of generated particle
   G4String particlename = step->GetTrack()->GetDefinition()->GetParticleName();
-  if (particlename == "pion")
+  if (particlename == "pion+" || "pion-")
   G4double numberstep = 1;
   fEventAction->AddEdep(numberstep);  
 }
