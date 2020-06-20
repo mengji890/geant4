@@ -43,5 +43,5 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   G4String particlename = step->GetTrack()->GetDefinition()->GetParticleName();
   if (particlename == "pion+" || "pion-")
   G4double numberstep = 1;
-  fEventAction->AddEdep(numberstep);  
+  fEventAction->AddNumb(numberstep);  
 }
