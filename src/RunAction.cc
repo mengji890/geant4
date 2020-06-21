@@ -70,7 +70,7 @@ void RunAction::EndOfRunAction(const G4Run* run)
   //  note: There is no primary generator action object for "master"
   //        run manager for multi-threaded mode.
   const PrimaryGeneratorAction* generatorAction
-   = static_cast<const B1PrimaryGeneratorAction*>
+   = static_cast<const PrimaryGeneratorAction*>
      (G4RunManager::GetRunManager()->GetUserPrimaryGeneratorAction());
   G4String runCondition;
   if (generatorAction)
